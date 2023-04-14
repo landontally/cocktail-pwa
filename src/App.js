@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
+import CocktailList from './components/CocktailList';
+import CocktailDetails from './components/CocktailDetails';
 
 function App() {
+  const [cocktails, setCocktails] = useState([]);
+  const [selectedCocktail, setSelectedCocktail] = useState(null);
+
+  const onSearch = (searchTerm) => {
+    console.log('Search term:', searchTerm);
+    // Fetch cocktail recipes based on the searchTerm and update the state
+    // For example: setCocktails(fetchedCocktails);
+  };
+
+  const onSelectCocktail = (cocktail) => {
+    setSelectedCocktail(cocktail);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <SearchBar onSearch={onSearch} />
+      {selectedCocktail ? (
+        <CocktailDetails cocktail={selectedCocktail} />
+      ) : (
+        <CocktailList cocktails={cocktails} onSelect={onSelectCocktail} />
+      )}
     </div>
   );
 }
