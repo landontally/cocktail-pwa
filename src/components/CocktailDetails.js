@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './CocktailDetails.module.css';
 
-const CocktailDetails = ({ cocktail }) => {
+const CocktailDetails = ({ cocktail, onBackClick }) => {
   if (!cocktail) {
     return <div className={styles.emptyMessage}>Please select a cocktail from the list.</div>;
   }
@@ -34,6 +34,7 @@ const CocktailDetails = ({ cocktail }) => {
       </ul>
       <h3 className={styles.subtitle}>Instructions</h3>
       <p className={styles.instructions}>{cocktail.strInstructions}</p>
+      <button onClick={onBackClick}>Back to list</button>
     </div>
   );
 };

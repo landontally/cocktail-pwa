@@ -25,8 +25,17 @@ function App() {
       <Header />
       <SearchBar onSearch={(query) => setSearchQuery(query)} />
       <div className="content">
-        <CocktailList cocktails={cocktails} onSelectCocktail={(cocktail) => setSelectedCocktail(cocktail)} />
-        <CocktailDetails cocktail={selectedCocktail} />
+        {selectedCocktail ? (
+          <CocktailDetails
+            cocktail={selectedCocktail}
+            onBackClick={() => setSelectedCocktail(null)}
+          />
+        ) : (
+          <CocktailList
+            cocktails={cocktails}
+            onSelectCocktail={(cocktail) => setSelectedCocktail(cocktail)}
+          />
+        )}
       </div>
     </div>
   );
