@@ -31,10 +31,13 @@ function App() {
             onBackClick={() => setSelectedCocktail(null)}
           />
         ) : (
-          <CocktailList
-            cocktails={cocktails}
-            onSelectCocktail={(cocktail) => setSelectedCocktail(cocktail)}
-          />
+          <>
+            <CocktailList
+              cocktails={cocktails}
+              onSelectCocktail={(cocktail) => setSelectedCocktail(cocktail)}
+            />
+            {!searchQuery && <CocktailDetails />}
+          </>
         )}
       </div>
     </div>

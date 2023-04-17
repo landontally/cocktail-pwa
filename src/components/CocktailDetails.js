@@ -1,9 +1,14 @@
 import React from 'react';
 import { Container, Row, Col, Button, Card, ListGroup } from 'react-bootstrap';
+import styles from './CocktailDetails.module.css';
 
 const CocktailDetails = ({ cocktail, onBackClick }) => {
   if (!cocktail) {
-    return <Container>Please select a cocktail from the list.</Container>;
+    return (
+      <Container className={styles.centeredText}>
+        <p className='lead'>Please enter an ingredient above.</p>
+      </Container>
+    );
   }
 
   const ingredients = [];
