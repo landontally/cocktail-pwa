@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './CocktailDetails.module.css';
+import { Container, Row, Col, Button, Card, ListGroup } from 'react-bootstrap';
 
 const CocktailDetails = ({ cocktail, onBackClick }) => {
   if (!cocktail) {
-    return <div className={styles.emptyMessage}>Please select a cocktail from the list.</div>;
+    return <Container>Please select a cocktail from the list.</Container>;
   }
 
   const ingredients = [];
@@ -21,21 +21,33 @@ const CocktailDetails = ({ cocktail, onBackClick }) => {
   }
 
   return (
-    <div className={styles.cocktailDetails}>
-      <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} className={styles.cocktailImage} />
-      <h2 className={styles.title}>{cocktail.strDrink}</h2>
-      <h3 className={styles.subtitle}>Ingredients</h3>
-      <ul className={styles.ingredientsList}>
-        {ingredients.map((ingredient, index) => (
-          <li key={index} className={styles.ingredientItem}>
-            {ingredient.measure} {ingredient.name}
-          </li>
-        ))}
-      </ul>
-      <h3 className={styles.subtitle}>Instructions</h3>
-      <p className={styles.instructions}>{cocktail.strInstructions}</p>
-      <button onClick={onBackClick}>Back to list</button>
-    </div>
+    <Container>
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <Card className="my-3">
+            <Card.Img variant="top" src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
+            <Card.Body>
+              <Card.Title>{cocktail.strDrink}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">Ingredients</Card.Subtitle>
+              <ListGroup variant="flush">
+                {ingredients.map((ingredient, index) => (
+                  <ListGroup.Item key={index}>
+                    {ingredient.measure} {ingredient.name}
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+              <Card.Subtitle className="mt-3 mb-2 text-muted">Instructions</Card.Subtitle>
+              <Card.Text>{cocktail.strInstructions}</Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <Button variant="dark" onClick={onBackClick}>
+                Back to list
+              </Button>
+            </Card.Footer>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
