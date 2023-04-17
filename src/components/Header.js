@@ -1,8 +1,14 @@
 import React from 'react';
-import styles from './Header.module.css';
+import { Navbar, Container } from 'react-bootstrap';
 
 const Header = () => {
-  return <header className={styles.header}>Cocktail Finder</header>;
+  return (
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand>Sip Happens</Navbar.Brand>
+      </Container>
+    </Navbar>
+  );
 };
 
 export default Header;
