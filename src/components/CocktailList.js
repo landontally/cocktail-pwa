@@ -1,14 +1,20 @@
 import React from 'react';
-import './CocktailList.css'; // Import the CSS file (if using plain CSS)
-import CocktailCard from './CocktailCard'; // Import the CocktailCard component
+import styles from './CocktailList.module.css';
 
-const CocktailList = ({ cocktails }) => {
+const CocktailList = ({ cocktails, onSelectCocktail }) => {
   return (
-    <div className="cocktail-list">
+    <ul className={styles.cocktailList}>
       {cocktails.map((cocktail) => (
-        <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
+        <li
+          key={cocktail.idDrink}
+          onClick={() => onSelectCocktail(cocktail)}
+          className={styles.cocktailItem}
+        >
+          <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} className={styles.cocktailImage} />
+          <p className={styles.cocktailName}>{cocktail.strDrink}</p>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
