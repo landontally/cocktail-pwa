@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
-
+import React, { useState, useEffect } from 'react';
+import './App.css';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import CocktailList from './components/CocktailList';
 import CocktailDetails from './components/CocktailDetails';
 
-import './App.css';
-
 function App() {
-  // ...
+  const [cocktails, setCocktails] = useState([]);
+  const [selectedCocktail, setSelectedCocktail] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  useEffect(() => {
+    if (searchQuery) {
+      fetch(`http://localhost:5000/api/cocktails?q=${searchQuery}`)
+        .then((response) => response.json())
+        .then((data) => setCocktails(data));
+    } else {
+      setCocktails([]);
+    }
+  }, [searchQuery]);
 
   return (
     <div className="App">
       <Header />
-      <SearchBar onSearch={onSearch} />
-      {isMobile ? (
-        <CocktailList cocktails={cocktails} onSelectCocktail={setSelectedCocktail} />
-      ) : (
-        <div className="cocktail-container">
-          <CocktailList cocktails={cocktails} onSelectCocktail={setSelectedCocktail} />
-          <CocktailDetails cocktail={selectedCocktail} />
-        </div>
-      )}
+      <SearchBar onSearch={(query) => setSearchQuery(query)} />
+      <div className="content">
+        <CocktailList cocktails={cocktails} onSelectCocktail={(cocktail) => setSelectedCocktail(cocktail)} />
+        <CocktailDetails cocktail={selectedCocktail} />
+      </div>
     </div>
   );
 }
