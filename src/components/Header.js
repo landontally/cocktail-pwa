@@ -1,12 +1,8 @@
 import React from 'react';
-import './Header.css'; // Import the CSS file (if using plain CSS)
+import styles from './Header.module.css';
 
 const Header = () => {
-  return (
-    <header className="app-header">
-      <h1 className="app-title">Cocktail Finder</h1>
-    </header>
-  );
+  return <header className={styles.header}>Cocktail Finder</header>;
 };
 
 export default Header;
