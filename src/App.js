@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
-import './App.css';
+import { useMediaQuery } from 'react-responsive';
+
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import CocktailList from './components/CocktailList';
+import CocktailDetails from './components/CocktailDetails';
+
+import './App.css';
 
 function App() {
-  const [cocktails, setCocktails] = useState([]);
+  // ...
 
-  const onSearch = (searchTerm) => {
-    console.log('Search term:', searchTerm);
-    // Fetch cocktail recipes based on the searchTerm and update the state
-    // For example: setCocktails(fetchedCocktails);
-  };
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   return (
     <div className="App">
       <Header />
       <SearchBar onSearch={onSearch} />
-      <CocktailList cocktails={cocktails} />
+      {isMobile ? (
+        <CocktailList cocktails={cocktails} onSelectCocktail={setSelectedCocktail} />
+      ) : (
+        <div className="cocktail-container">
+          <CocktailList cocktails={cocktails} onSelectCocktail={setSelectedCocktail} />
+          <CocktailDetails cocktail={selectedCocktail} />
+        </div>
+      )}
     </div>
   );
 }
