@@ -1,45 +1,39 @@
 import React from 'react';
-import './CocktailDetails.css'; // Import the CSS file (if using plain CSS)
+import styles from './CocktailDetails.module.css';
 
 const CocktailDetails = ({ cocktail }) => {
-  const {
-    strDrink,
-    strDrinkThumb,
-    strInstructions,
-    strGlass,
-  } = cocktail;
+  if (!cocktail) {
+    return <div className={styles.emptyMessage}>Please select a cocktail from the list.</div>;
+  }
 
-  const getIngredients = () => {
-    const ingredients = [];
-    for (let i = 1; i <= 15; i++) {
-      const ingredient = cocktail[`strIngredient${i}`];
-      const measure = cocktail[`strMeasure${i}`];
-      if (ingredient) {
-        ingredients.push({ ingredient, measure });
-      }
+  const ingredients = [];
+
+  for (let i = 1; i <= 15; i++) {
+    const ingredient = cocktail[`strIngredient${i}`];
+    const measure = cocktail[`strMeasure${i}`];
+
+    if (ingredient) {
+      ingredients.push({
+        name: ingredient,
+        measure: measure || '',
+      });
     }
-    return ingredients;
-  };
-
-  const ingredients = getIngredients();
+  }
 
   return (
-    <div className="cocktail-details">
-      <h2 className="cocktail-title">{strDrink}</h2>
-      <img src={strDrinkThumb} alt={strDrink} className="cocktail-image" />
-      <h3 className="section-title">Ingredients:</h3>
-      <ul className="ingredients-list">
-        {ingredients.map((item, index) => (
-          <li key={index}>
-            {item.ingredient}
-            {item.measure && ` - ${item.measure}`}
+    <div className={styles.cocktailDetails}>
+      <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} className={styles.cocktailImage} />
+      <h2 className={styles.title}>{cocktail.strDrink}</h2>
+      <h3 className={styles.subtitle}>Ingredients</h3>
+      <ul className={styles.ingredientsList}>
+        {ingredients.map((ingredient, index) => (
+          <li key={index} className={styles.ingredientItem}>
+            {ingredient.measure} {ingredient.name}
           </li>
         ))}
       </ul>
-      <h3 className="section-title">Instructions:</h3>
-      <p className="instructions">{strInstructions}</p>
-      <h3 className="section-title">Glass:</h3>
-      <p className="glass">{strGlass}</p>
+      <h3 className={styles.subtitle}>Instructions</h3>
+      <p className={styles.instructions}>{cocktail.strInstructions}</p>
     </div>
   );
 };
