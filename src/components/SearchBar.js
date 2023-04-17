@@ -9,6 +9,8 @@ const SearchBar = ({ onSearch }) => {
     onSearch(searchTerm);
   };
 
+  console.log(onSearch);
+
   return (
     <form onSubmit={handleSubmit} className={styles.searchBar}>
       <input
