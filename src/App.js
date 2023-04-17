@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     if (searchQuery) {
-      fetch(`http://localhost:5000/api/cocktails?q=${searchQuery}`)
+      fetch(`http://localhost:5000/api/cocktails/search/${searchQuery}`)
         .then((response) => response.json())
         .then((data) => setCocktails(data));
     } else {

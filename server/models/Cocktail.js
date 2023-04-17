@@ -6,6 +6,7 @@ const cocktailSchema = new mongoose.Schema({
   strDrinkThumb: String,
   strInstructions: String,
   strGlass: String,
+  strIngredients: String,
   strIngredient1: String,
   strIngredient2: String,
   // ... Add other ingredients if needed

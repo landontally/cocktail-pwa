@@ -39,6 +39,11 @@ async function fetchAndPopulateCocktails() {
           strDrinkThumb: details.strDrinkThumb,
           strInstructions: details.strInstructions,
           strGlass: details.strGlass,
+          strIngredients: [
+            details.strIngredient1,
+            details.strIngredient2,
+            // ... Add other ingredients if needed
+          ].join(', '),
           strIngredient1: details.strIngredient1,
           strIngredient2: details.strIngredient2,
           // ... Add other ingredients if needed
