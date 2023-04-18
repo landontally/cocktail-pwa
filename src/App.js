@@ -28,7 +28,7 @@ function App() {
       <Header />
       <Container fluid>
         {showLanding ? (
-          <Row className="landing" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', height: '92.5vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Row className="landing" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', height: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Col style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', borderRadius: '0px', padding: '30px' }}>
               <h1 className="text-white" style={{ fontSize: '2.5rem' }}>Embark on a delightful journey to uncover your next cocktail</h1>
               <p className="text-white" style={{ fontSize: '1.3rem' }}>Search for cocktails by ingredient</p>
