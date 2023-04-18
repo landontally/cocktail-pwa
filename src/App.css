@@ -7,6 +7,23 @@
   pointer-events: none;
 }
 
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.landing-background {
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.landing-text {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
 /* body {
   background-image: url('./background.jpg');
   background-size: cover;
