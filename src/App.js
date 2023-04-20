@@ -32,7 +32,7 @@ function App() {
             <Col style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', borderRadius: '0px', padding: '30px' }}>
               <h1 className="text-white" style={{ fontSize: '2.5rem' }}>Embark on a delightful journey to uncover your next cocktail</h1>
               <p className="text-white" style={{ fontSize: '1.3rem' }}>Search for cocktails by ingredient</p>
-              <Button variant="dark" onClick={() => setShowLanding(false)}>
+              <Button variant="dark" style={{ fontSize: '1.0rem' }} onClick={() => setShowLanding(false)}>
                 Get started
               </Button>
             </Col>
